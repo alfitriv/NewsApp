@@ -13,6 +13,14 @@
 		3831099C2481493100333D43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3831099A2481493100333D43 /* Main.storyboard */; };
 		3831099E2481493200333D43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3831099D2481493200333D43 /* Assets.xcassets */; };
 		383109A12481493200333D43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3831099F2481493200333D43 /* LaunchScreen.storyboard */; };
+		383109A9248149CF00333D43 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109A8248149CF00333D43 /* Article.swift */; };
+		383109AB24814AA600333D43 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109AA24814AA600333D43 /* Source.swift */; };
+		383109AD24814CCF00333D43 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109AC24814CCF00333D43 /* NetworkLayer.swift */; };
+		383109AF24814E9A00333D43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109AE24814E9A00333D43 /* Response.swift */; };
+		383109B22481530F00333D43 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109B02481530F00333D43 /* ListViewController.swift */; };
+		383109B32481530F00333D43 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383109B12481530F00333D43 /* ListViewController.xib */; };
+		383109B62481551000333D43 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383109B42481551000333D43 /* ListTableViewCell.swift */; };
+		383109B72481551000333D43 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383109B52481551000333D43 /* ListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		3831099D2481493200333D43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		383109A02481493200333D43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383109A22481493200333D43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		383109A8248149CF00333D43 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		383109AA24814AA600333D43 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		383109AC24814CCF00333D43 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		383109AE24814E9A00333D43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		383109B02481530F00333D43 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		383109B12481530F00333D43 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		383109B42481551000333D43 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		383109B52481551000333D43 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +79,14 @@
 				3831099D2481493200333D43 /* Assets.xcassets */,
 				3831099F2481493200333D43 /* LaunchScreen.storyboard */,
 				383109A22481493200333D43 /* Info.plist */,
+				383109A8248149CF00333D43 /* Article.swift */,
+				383109AA24814AA600333D43 /* Source.swift */,
+				383109AC24814CCF00333D43 /* NetworkLayer.swift */,
+				383109AE24814E9A00333D43 /* Response.swift */,
+				383109B02481530F00333D43 /* ListViewController.swift */,
+				383109B12481530F00333D43 /* ListViewController.xib */,
+				383109B42481551000333D43 /* ListTableViewCell.swift */,
+				383109B52481551000333D43 /* ListTableViewCell.xib */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -127,7 +151,9 @@
 			files = (
 				383109A12481493200333D43 /* LaunchScreen.storyboard in Resources */,
 				3831099E2481493200333D43 /* Assets.xcassets in Resources */,
+				383109B32481530F00333D43 /* ListViewController.xib in Resources */,
 				3831099C2481493100333D43 /* Main.storyboard in Resources */,
+				383109B72481551000333D43 /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +164,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				383109AD24814CCF00333D43 /* NetworkLayer.swift in Sources */,
+				383109A9248149CF00333D43 /* Article.swift in Sources */,
 				383109992481493100333D43 /* ViewController.swift in Sources */,
 				383109952481493100333D43 /* AppDelegate.swift in Sources */,
+				383109AB24814AA600333D43 /* Source.swift in Sources */,
+				383109B62481551000333D43 /* ListTableViewCell.swift in Sources */,
 				383109972481493100333D43 /* SceneDelegate.swift in Sources */,
+				383109B22481530F00333D43 /* ListViewController.swift in Sources */,
+				383109AF24814E9A00333D43 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
