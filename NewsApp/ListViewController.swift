@@ -8,11 +8,18 @@
 
 import UIKit
 
+enum CellType {
+    case header
+    case list
+}
+
 class ListViewController: UIViewController {
     var networkLayer = NetworkLayer.shared
     private let newsService: NewsServices
     @IBOutlet weak var tableView: UITableView!
     var articles: [Article] = []
+    var bitcoinArticles: [Article] = []
+    var sections: [CellType] = [CellType.header, CellType.list]
     
     init(newsService: NewsServices) {
         self.newsService = newsService
@@ -33,33 +40,55 @@ class ListViewController: UIViewController {
             print(error)
         }
         
+        networkLayer.fetchBitCoinNews(successHandler: { (articles) in
+            self.bitcoinArticles = articles
+            self.tableView.reloadData()
+        }) { (error) in
+            print(error)
+        }
+        
         tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "List")
+        tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "Header")
 
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        let section = sections[section]
+        
+        switch section {
+        case .header:
+            return 1
+        case .list:
+            return bitcoinArticles.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "List", for: indexPath) as! ListTableViewCell
-        let article = articles[indexPath.row]
-        cell.setupView(article: article)
-        return cell 
+        let section = sections[indexPath.section]
+
+        switch section {
+        case .header:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Header", for: indexPath) as! HeaderTableViewCell
+            if let article = articles.first {
+              cell.setupView(article: article)
+            }
+            return cell
+        case .list:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "List", for: indexPath) as! ListTableViewCell
+            let article = bitcoinArticles[indexPath.row]
+            cell.setupView(article: article)
+            return cell
+            //return UITableViewCell()
+        }
+        
+
     }
     
     

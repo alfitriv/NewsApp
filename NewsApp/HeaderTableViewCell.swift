@@ -1,5 +1,5 @@
 //
-//  ListTableViewCell.swift
+//  HeaderTableViewCell.swift
 //  NewsApp
 //
 //  Created by Vania Radmila Alfitri on 29/05/20.
@@ -9,11 +9,11 @@
 import UIKit
 import Kingfisher
 
-class ListTableViewCell: UITableViewCell {
+class HeaderTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var headlineLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var thumbImage: UIImageView!
+    @IBOutlet weak var headerImage: UIImageView!
+    @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +27,11 @@ class ListTableViewCell: UITableViewCell {
     }
     
     func setupView(article: Article) {
-        headlineLabel.text = article.title
-        descriptionLabel.text = article.description
+        sourceLabel.text = article.source.name
+        titleLabel.text = article.title
+        
+        let url = URL(string: article.urlToImage ?? "")
+        headerImage.kf.setImage(with: url)
     }
     
 }
