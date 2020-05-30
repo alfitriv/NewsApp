@@ -29,6 +29,9 @@ class ListTableViewCell: UITableViewCell {
     func setupView(article: Article) {
         headlineLabel.text = article.title
         descriptionLabel.text = article.description
+        
+        let url = URL(string: article.urlToImage ?? "")
+        thumbImage.kf.setImage(with: url)
     }
     
 }

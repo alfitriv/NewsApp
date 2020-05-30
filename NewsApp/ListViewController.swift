@@ -85,11 +85,29 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             let article = bitcoinArticles[indexPath.row]
             cell.setupView(article: article)
             return cell
-            //return UITableViewCell()
         }
         
-
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = sections[section]
+        
+        switch section {
+        case .header:
+            return "Trending"
+        case .list:
+            return "Featured"
+        }
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = sections[indexPath.section]
+        
+        switch section {
+        case .header:
+            return 300
+        case .list:
+            return 100
+        }
+    }
 }

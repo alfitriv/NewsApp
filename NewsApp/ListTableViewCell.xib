@@ -16,35 +16,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-c1-gOA">
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-pV-Cs2">
                         <rect key="frame" x="16" y="16" width="288" height="59"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2o-e4-Yl2">
-                                <rect key="frame" x="0.0" y="0.0" width="288" height="23"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKS-Xg-Q4B">
-                                <rect key="frame" x="0.0" y="41" width="288" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-c1-gOA">
+                                <rect key="frame" x="0.0" y="0.0" width="176" height="59"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2o-e4-Yl2">
+                                        <rect key="frame" x="0.0" y="0.0" width="176" height="23"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKS-Xg-Q4B">
+                                        <rect key="frame" x="0.0" y="41" width="176" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nnH-bx-lZX">
+                                <rect key="frame" x="208" y="0.0" width="80" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="HUl-UJ-XNl"/>
+                                    <constraint firstAttribute="height" constant="80" id="RIY-eD-Pd3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IBh-c1-gOA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="LkU-LM-Cdv"/>
-                    <constraint firstAttribute="trailing" secondItem="IBh-c1-gOA" secondAttribute="trailing" constant="16" id="flb-2F-59F"/>
-                    <constraint firstItem="IBh-c1-gOA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="sAh-dr-YEl"/>
-                    <constraint firstAttribute="bottom" secondItem="IBh-c1-gOA" secondAttribute="bottom" constant="16" id="smL-RT-X4v"/>
+                    <constraint firstAttribute="trailing" secondItem="oCC-pV-Cs2" secondAttribute="trailing" constant="16" id="60g-KT-GYu"/>
+                    <constraint firstAttribute="bottom" secondItem="oCC-pV-Cs2" secondAttribute="bottom" constant="16" id="9qG-BX-rTN"/>
+                    <constraint firstItem="oCC-pV-Cs2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ud0-Tk-lrB"/>
+                    <constraint firstItem="oCC-pV-Cs2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="bQJ-3R-rIP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionLabel" destination="gKS-Xg-Q4B" id="ee8-ce-7KF"/>
                 <outlet property="headlineLabel" destination="g2o-e4-Yl2" id="dCJ-kR-0xd"/>
+                <outlet property="thumbImage" destination="nnH-bx-lZX" id="kDM-Ot-dEi"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="169.08482142857142"/>
         </tableViewCell>
