@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 enum CellType {
     case header
@@ -20,6 +21,9 @@ class ListViewController: UIViewController {
     var articles: [Article] = []
     var bitcoinArticles: [Article] = []
     var sections: [CellType] = [CellType.header, CellType.list]
+    var webView: WKWebView!
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredArticles: [Article] = []
     
     init(newsService: NewsServices) {
         self.newsService = newsService
@@ -39,20 +43,33 @@ class ListViewController: UIViewController {
         }) { (error) in
             print(error)
         }
+  
+        searchController.searchBar.delegate = self
+           searchController.obscuresBackgroundDuringPresentation = false
+           searchController.searchBar.placeholder = "Search Topic"
+           navigationItem.searchController = searchController
+           definesPresentationContext = true
         
-        networkLayer.fetchBitCoinNews(successHandler: { (articles) in
-            self.bitcoinArticles = articles
+        tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "List")
+        tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "Header")
+        tableView.separatorStyle = .none
+
+    }
+    
+    func searchContentForSearchText(_ searchText: String) {
+        networkLayer.fetchNews(searchText: searchText, successHandler: { (articles) in
+            self.articles = articles
             self.tableView.reloadData()
         }) { (error) in
             print(error)
         }
         
-        tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "List")
-        tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "Header")
-
     }
+    
+    
 
 }
+
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,7 +83,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         case .header:
             return 1
         case .list:
-            return bitcoinArticles.count
+            return articles.count - 1
         }
     }
     
@@ -82,7 +99,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .list:
             let cell = tableView.dequeueReusableCell(withIdentifier: "List", for: indexPath) as! ListTableViewCell
-            let article = bitcoinArticles[indexPath.row]
+            let article = articles[indexPath.row + 1]
             cell.setupView(article: article)
             return cell
         }
@@ -105,9 +122,33 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case .header:
-            return 300
+            return 350
         case .list:
             return 100
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = articles[indexPath.row]
+        //let bitcoinArticle = bitcoinArticles[indexPath.row]
+        let section = sections[indexPath.section]
+        let detailVC = DetailViewController.init(nibName: "DetailViewController", bundle: nil)
+        self.navigationController?.pushViewController(detailVC, animated: true)
+
+        switch section {
+        case .header:
+            detailVC.chosenUrl = article.url ?? ""
+        case .list:
+            detailVC.chosenUrl = article.url ?? ""
+
+        }
+    }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let searchBar = searchController.searchBar
+        searchContentForSearchText(searchBar.text ?? "")
+        tableView.reloadData()
     }
 }

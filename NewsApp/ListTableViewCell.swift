@@ -14,10 +14,14 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var thumbImage: UIImageView!
+    @IBOutlet weak var parentView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        thumbImage.layer.cornerRadius = 10
+        thumbImage.layer.masksToBounds = true
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,8 +31,9 @@ class ListTableViewCell: UITableViewCell {
     }
     
     func setupView(article: Article) {
+        
         headlineLabel.text = article.title
-        descriptionLabel.text = article.description
+        descriptionLabel.text = article.author
         
         let url = URL(string: article.urlToImage ?? "")
         thumbImage.kf.setImage(with: url)
