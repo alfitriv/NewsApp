@@ -24,6 +24,7 @@ class ListViewController: UIViewController {
     var webView: WKWebView!
     let searchController = UISearchController(searchResultsController: nil)
     var filteredArticles: [Article] = []
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     init(newsService: NewsServices) {
         self.newsService = newsService
@@ -37,7 +38,11 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         networkLayer.fetchNews(successHandler: { (articles) in
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
             self.articles = articles
             self.tableView.reloadData()
         }) { (error) in
@@ -66,7 +71,21 @@ class ListViewController: UIViewController {
         
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+
+            self.tableView.reloadData()
+        } else {
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+
+        }
+    }
 
 }
 
