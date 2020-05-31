@@ -16,3 +16,6 @@ An iOS app that displays news from News API https://newsapi.org. The app allows 
 
 # Running the tests
 You can press `Comman + U` to run all tests
+
+# Demo
+![Demo](https://gph.is/g/4MoDkOx)
