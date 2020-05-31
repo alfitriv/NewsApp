@@ -14,6 +14,7 @@ class HeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,7 @@ class HeaderTableViewCell: UITableViewCell {
     func setupView(article: Article) {
         sourceLabel.text = article.source.name
         titleLabel.text = article.title
+        authorLabel.text = article.author
         
         let url = URL(string: article.urlToImage ?? "")
         headerImage.kf.setImage(with: url)

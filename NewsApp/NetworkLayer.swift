@@ -16,7 +16,7 @@ class NetworkLayer: NewsServices {
     static var shared = NetworkLayer()
     private init() {}
     
-    func fetchNews(searchText: String = "pandemic", successHandler: @escaping ([Article]) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func fetchNews(searchText: String, successHandler: @escaping ([Article]) -> Void, errorHandler: @escaping (Error) -> Void) {
         let session = URLSession.shared
         let urlRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/everything?q=\(searchText)&apiKey=44512f7a934e4715b1666758e372c318")!)
         

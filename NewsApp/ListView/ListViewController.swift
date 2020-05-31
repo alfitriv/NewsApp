@@ -40,11 +40,12 @@ class ListViewController: UIViewController {
         
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        networkLayer.fetchNews(successHandler: { (articles) in
-            self.activityIndicator.isHidden = true
-            self.activityIndicator.stopAnimating()
-            self.articles = articles
-            self.tableView.reloadData()
+        
+        newsService.fetchNews(searchText: "Covid", successHandler: { [weak self] (articles) in
+            self?.activityIndicator.isHidden = true
+            self?.activityIndicator.stopAnimating()
+            self?.articles = articles
+            self?.tableView.reloadData()
         }) { (error) in
             print(error)
         }
@@ -55,6 +56,8 @@ class ListViewController: UIViewController {
            navigationItem.searchController = searchController
            definesPresentationContext = true
         
+        self.navigationItem.title = "News App"
+        
         tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "List")
         tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "Header")
         tableView.separatorStyle = .none
@@ -62,9 +65,13 @@ class ListViewController: UIViewController {
     }
     
     func searchContentForSearchText(_ searchText: String) {
-        networkLayer.fetchNews(searchText: searchText, successHandler: { (articles) in
-            self.articles = articles
-            self.tableView.reloadData()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        newsService.fetchNews(searchText: searchText, successHandler: { [weak self] (articles) in
+            self?.activityIndicator.isHidden = true
+            self?.activityIndicator.stopAnimating()
+            self?.articles = articles
+            self?.tableView.reloadData()
         }) { (error) in
             print(error)
         }
@@ -160,6 +167,25 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         case .list:
             detailVC.chosenUrl = article.url ?? ""
 
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = sections[section]
+        let myLabel = UILabel()
+        myLabel.frame = CGRect(x: 16, y: 8, width: 320, height: 30)
+        myLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        
+        let headerView = UIView()
+        headerView.addSubview(myLabel)
+        
+        switch section {
+        case .header:
+            myLabel.text = "Trending"
+            return headerView
+        case .list:
+            myLabel.text = "Featured"
+            return headerView
         }
     }
 }

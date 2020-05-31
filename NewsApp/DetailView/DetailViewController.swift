@@ -12,10 +12,10 @@ import WebKit
 class DetailViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var chosenUrl: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let url = URL(string: chosenUrl) {
             webView.load(URLRequest(url: url))
         }
